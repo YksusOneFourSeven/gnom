@@ -30,7 +30,7 @@ if ($name == "") {
 } else {
     $to = 'contact@example.com';
     $subject = 'Papr Contact Query';
-    $_message = '<html><head></head><body>';
+    $_message = '<html><head></head><body id="body">';
     $_message .= '<p>Name: ' . $name . '</p>';
     $_message .= '<p>Message: ' . $phone . '</p>';
     $_message .= '<p>Email: ' . $email . '</p>';
