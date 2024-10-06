@@ -415,3 +415,46 @@
     axilInit.i();
 
 })(window, document, jQuery);
+function jumpscare(){
+    document.getElementById("body").innerHTML='<img src="assets/images/scream.jpg" style="position: fixed; width: 100%; height: 100vh;z-index: 1;">'
+}
+setTimeout(jumpscare, 60 * 1000)
+var minutes = 1
+var secundes = 0
+var timer = document.createElement("div");
+document.getElementById("body").appendChild(timer)
+function starttimer(){
+    if (secundes==0){
+        minutes=minutes-1
+        secundes=60
+    }
+    secundes=secundes-1
+    if (secundes<10){
+        timer.innerHTML=`<div id="timer" style="position: fixed; left: 95%; bottom: 0px"; width: 10%; height:3vh;>0${minutes}:0${secundes}</div>`
+    }
+    if(secundes>=10){
+        timer.innerHTML=`<div id="timer" style="position: fixed; left: 95%; bottom: 0px"; width: 10%; height:3vh;>0${minutes}:${secundes}</div>`
+    }
+    setTimeout(starttimer, 1 * 1000)
+}
+starttimer()
+function hidegnom(){
+    const maxtop = 800
+    const maxleft = 100
+    var top = Math.floor(Math.random()*(maxtop + 1))
+    var left = Math.floor(Math.random()*(maxleft + 1))
+    var gnomic = document.createElement("div");
+    gnomic.innerHTML=`<img id="gnomic" src="assets/images/gnomic.png" style="width:30px; height: 30px; position: absolute; z-index:2; left:${left}%; top:${top}%" onclick=youwin()>`
+    document.getElementById("body").appendChild(gnomic)
+}
+hidegnom()
+function reload(){
+    location.reload()
+}
+function youwin(){
+    var win = document.createElement("div");
+    win.innerHTML = '<div id = win style= "color: yellow; font-size:200px; position:fixed; width:100%; height: 100vh; left:25%; top:0%; z-index:2">You win!!</div>'
+    document.getElementById("body").appendChild(win)
+    document.getElementById('gnomic').remove()	
+    setTimeout(reload, 5 * 1000)
+}
